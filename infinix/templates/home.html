@@ -1,7 +1,11 @@
 {% extends "base.html" %}  
-
+{% load static %}
 {% block content %}
+<body style="background-image: url('{%static 'images/aa.jpg'%}');">
+    <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:150px;height:150px;"src="https://www.clocklink.com/html5embed.php?clock=022&timezone=GMT0545&color=brown&size=150&Title=&Message=&Target=&From=2023,1,1,0,0,0&Color=brown"></iframe>
 <div class="main_content">
   Welcome to my website
 </div>  
+
 {% endblock %}
+</body>

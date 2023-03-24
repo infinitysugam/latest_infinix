@@ -1,0 +1,23 @@
+{% extends "base.html" %}  
+{% load static %}
+{% block content %}
+<!--<body style="background-image: url('{%static 'images/aa.jpg'%}');">-->
+<div class="container my-3">
+<form method="post">
+    {% csrf_token %}
+    <label class="form-label">Title:</label><br>
+    <input type="text" class="form-control" name="title"><br>
+    <label class="form-label">Description:</label><br>
+    <textarea name="description" class="form-control"></textarea><br>
+    <label for="cars">Choose a category :</label>
+<select id="category_id" name="category_id">
+  <option value="1">Things thats gonna make your life easy.</option>
+  <option value="2">Career</option>
+  <option value="3">Relationship</option>
+</select><br>
+    <input type="submit" value="Add">
+    <a href="{% url 'to_do' %}">Cancel</a>
+</form>
+</div>
+</body>
+{% endblock %}
