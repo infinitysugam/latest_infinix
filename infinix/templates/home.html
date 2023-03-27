@@ -1,11 +1,21 @@
 {% extends "base.html" %}  
 {% load static %}
 {% block content %}
-<body style="background-image: url('{%static 'images/aa.jpg'%}');">
-    <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:150px;height:150px;"src="https://www.clocklink.com/html5embed.php?clock=022&timezone=GMT0545&color=brown&size=150&Title=&Message=&Target=&From=2023,1,1,0,0,0&Color=brown"></iframe>
-<div class="main_content">
-  Welcome to my website
-</div>  
+<!-- ======= Hero Section ======= -->
+  <div id="hero" class="hero route bg-image" style="background-image: url('{%static 'images/aa.jpg'%}');">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <!--<p class="display-6 color-d">Hello, world!</p>-->
+          <h1 class="hero-title mb-4">I am Sugam Mishra</h1>
+          <p class="hero-subtitle"><span class="typed" data-typed-items="Data Engineer, Developer, Freelancer, Wanderlust"></span></p>
+          <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
+        </div>
+      </div>
+    </div>
+  </div><!-- End Hero Section -->
+
 
 {% endblock %}
 </body>
