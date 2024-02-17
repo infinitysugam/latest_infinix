@@ -1,23 +1,25 @@
-{% extends "base.html" %}  
-
+{% extends "all_base.html" %}  
 {% block content %}
+<body style ="background-color:#feff9c">
+
 <!--<ul>
   {% for task in tasks %}
       <li{% if task.completed %} class="completed"{% endif %}>
           {{ task.title }}
           <a href="{% url 'complete_task' task.id %}">[complete]</a>
-      </li>
+      </li>W
   {% empty %}
       <li>No tasks yet.</li>
   {% endfor %}
   </ul>-->
 
   <div class="container-fluid bg-3 text-center">    
-    <h3>You must not fool yourself,You are the easiest to fool.</h3><br>
+        <h3>You must not fool yourself,You are the easiest to fool.</h3><br>
     <div class="row">
       <div class="col-sm-4">
         <p>Things thats gonna make your life easy.</p>
         <ul>
+
    
         <!-- {% for task in tasks %}
         <li{% if task.completed and task.category_id == 1 %} class="completed"{% endif %}>
@@ -111,3 +113,4 @@
   
 
 {% endblock %}
+<!-- </body> -->

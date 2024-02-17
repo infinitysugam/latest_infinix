@@ -23,6 +23,7 @@ from users import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/',include('todo_list.urls')),
+    path('dashboard/',include('dashboard.urls')),
     path('',views.home,name='home'),
     path('register/',user_views.register,name='register'),
     path('profile/',user_views.profile,name='profile'),

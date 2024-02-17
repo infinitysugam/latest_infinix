@@ -15,12 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from todo_list import views
+from dashboard import views
 
 urlpatterns = [
-    path('',views.to_do,name='to_do'),
-    path('add/', views.add_task, name='add_task'),
-    path('complete/<int:task_id>/', views.complete_task, name='complete_task'),
-    path('update/',views.update,name='update'),
-    path('delete/',views.delete,name='delete')
+    path('',views.dashboard,name='dashboard')
 ]

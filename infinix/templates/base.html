@@ -37,6 +37,7 @@
         <ul>
           <li><a class="nav-link scrollto " href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="#">About</a></li>
+          <li><a class="nav-link scrollto" href="/todo">Notes</a></li>
           {% if user.is_authenticated %}
            <li><a class="nav-link scrollto" href="/profile">Profile</a></li>
             <li><a class="nav-link scrollto" href="/logout">Logout</a></li>
@@ -50,7 +51,9 @@
 
     </div>
   </header><!-- End Header -->
+  <div>
   {% block content %}{% endblock %} 
+  </div>
 
 
   <script src="{% static 'vendor/purecounter/purecounter_vanilla.js'%}"></script>
