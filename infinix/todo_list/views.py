@@ -2,18 +2,22 @@ from django.shortcuts import render,HttpResponse,redirect
 from .models import Task
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
 import json
 
 # Create your views here.
 def home(request):
     return render(request,'home.html')
 
+
+@login_required
 def to_do(request):
     tasks = Task.objects.filter(is_deleted=0)
-    return render(request, 'todo_new.html', {'tasks': tasks})
+    return render(request, 'todo.html', {'tasks': tasks})
 
 
-
+@login_required
 def task_list(request):
     tasks = Task.objects.all()
     return render(request, 'task_list.html', {'tasks': tasks})
@@ -21,10 +25,9 @@ def task_list(request):
 @csrf_exempt
 def add_task(request):
     if request.method == 'POST':
-        # title = request.POST['title']
-        # description = request.POST['description']
-        # category_id = request.POST['category_id']
-        task = Task(title="Enter Title", description="Enter Description",is_deleted=0)
+        data = json.loads(request.body)
+
+        task = Task(title="Enter Title", description="Enter Description",is_deleted=0,category_id=data.get('category_id'))
         task.save()
         return redirect('to_do')
     return render(request, 'add_task.html')

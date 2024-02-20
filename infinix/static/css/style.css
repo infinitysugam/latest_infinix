@@ -1452,6 +1452,16 @@ body {
   }
 
 
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Adjust the height as needed */
+    overflow-y: auto; /* Allow vertical scrolling */
+    background-color: #343a40; /* Change the background color as needed */
+    color: #fff; /* Change the text color as needed */
+    z-index: 1000; /* Adjust the z-index as needed */
+}
+
 
   .sticky-note {
     color:#000;
@@ -1483,20 +1493,24 @@ body {
     margin:0;
     padding:0;
   }
+
   .note-h2 {
     font-weight: bold;
-    font-size: 2rem;
-    font-family: 'Reenie Beanie';
+    font-size: 3rem;
+    font-family: "Dancing Script", cursive;
 
   }
   .note-p {
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: normal;
-    font-family: 'Cursive';
+    font-family:"Dancing Script", cursive;
 
   }
   .note-ul,.note-li{
     list-style:none;
+    display:flex;
+    flex-direction: row;
+        margin: 10px;
   }
   .note-ul{
     display: flex;
@@ -1508,8 +1522,8 @@ body {
     color:#000;
     background:#cfc;
     display:block;
-    height:10em;
-    width:10em;
+    height:20em;
+    width:20em;
     padding:1em;
     box-shadow: 5px 5px 7px rgba(33,33,33,.7);
     transform: rotate(4deg);
@@ -1522,8 +1536,8 @@ body {
     color:#000;
     background:#ccf;
     display:block;
-    height:10em;
-    width:10em;
+    height:20em;
+    width:20em;
     padding:1em;
     box-shadow: 5px 5px 7px rgba(33,33,33,.7);
     transform: rotate(-3deg);
@@ -1536,8 +1550,8 @@ body {
     color:#000;
     background:#ccf;
     display:block;
-    height:10em;
-    width:10em;
+    height:20em;
+    width:20em;
     padding:1em;
     box-shadow: 5px 5px 7px rgba(33,33,33,.7);
     transform: rotate(-3deg);
@@ -1566,4 +1580,137 @@ body {
     background: rgb(233, 126, 126);
     border: none;
     cursor: pointer;
+}
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+.notebook-body {
+  margin: 20px;
+  padding: 0;
+  background: lightgoldenrodyellow;
+}
+
+.notebook-paper {
+  text-decoration:none;
+  color:#000;
+  background:white;
+  display:block;
+  height:550px;
+  width:550px;
+  margin: 1px auto; 
+  /* padding:1em; */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  position: relative;
+ /* flex-wrap: wrap;*/
+ justify-content: center;
+ /* padding-top: 40px;
+  padding-bottom: 40px; */
+
+  
+}
+
+.notebook-paper::before {
+  content: '';
+  position: absolute;
+  left: 45px;
+  height: 100%;
+  width: 2px;
+  background: rgba(255,0,0,0.4);
+
+}
+
+.notebook-lines {
+  margin-top: 40px; 
+  height: calc(100% - 40px);  
+ /* height: 100%;  */
+  width: 100%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+}
+
+.notebook-title {
+  position: absolute;
+  top: 65px;
+  left: 55px;
+  bottom: 10px;
+  right: 10px;
+  line-height: 25px;
+  font-family: 'Indie Flower';
+  overflow: hidden;
+  outline: none;
+}
+
+.notebook-desc {
+  position: absolute;
+  top: 65px;
+  left: 55px;
+  bottom: 10px;
+  right: 10px;
+  line-height: 25px;
+  font-family: 'Indie Flower';
+  overflow: hidden;
+  outline: none;
+}
+
+.holes {
+  position: absolute;
+  left: 10px;
+  height: 25px;
+  width: 25px;
+  background: lightgoldenrodyellow;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 2px 0px #888;
+}
+
+.notebook-hole-top {
+  top: 10%;
+}
+.notebook-hole-middle {
+  top: 50%;
+}
+.notebook-hole-bottom {
+  bottom: 10%;
+}
+ 
+.hidden {
+  display: none;
+}
+
+
+
+/* CSS */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
 }

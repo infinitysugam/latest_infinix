@@ -14,5 +14,6 @@ class Task(models.Model):
     description = models.TextField()
     completed = models.BooleanField(default=False)
     is_deleted = models.IntegerField()
+    category_id=models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
