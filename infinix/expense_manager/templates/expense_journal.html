@@ -1,0 +1,106 @@
+{% extends "all_base.html" %}  
+{% block content %}
+
+<table class="table table-dark table-striped table-striped-columns">
+    <thead>
+        <tr>
+        <th scope="col">Date</th>
+          <th scope="col">category</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Description</th>
+        </tr> 
+      </thead>
+      <tbody>
+        
+        {% for expense in expenses %}
+        <tr>
+          <td>{{ expense.date }}</td>
+          <td>{{ expense.category.name }}</td>
+          <td>${{ expense.amount }}</td>
+        <td>{{ expense.description }}</td>
+        </tr>
+        {% endfor %}
+
+ 
+
+      </tbody>
+    </table>
+
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+
+            <li>
+                <a href="?page=1" class="page-link">&laquo; First</a>
+                </li>
+            {% if expenses.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ expenses.previous_page_number }}">Previous</a></li>
+            {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          {% endif %}
+
+
+
+          {% for num in expenses.paginator.page_range %}
+          {% if num >= expenses.number|add:"-2" and num <= expenses.number|add:"2" %}
+              {% if num == expenses.number %}
+                  <span class="page-link current-page active">{{ num }}</span>
+              {% else %}
+                  <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+              {% endif %}
+          {% endif %}
+      {% endfor %}
+
+<!--       
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+ -->
+
+          {% if expenses.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ expenses.next_page_number }}">Next</a>
+          </li>
+          {% else %}
+
+          <li class="page-item disabled">
+            <a class="page-link">Next</a>
+          </li>
+
+
+        {% endif %}
+        <li>
+        <a href="?page={{ expenses.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+        </li>
+        </ul>
+      </nav>
+
+    <!-- <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">  
+            {% if expenses.has_previous %}
+                <a href="?page=1" class="page-link" aria-label="Previous"> <span aria-hidden="true">&laquo; First </span></a>
+                <a href="?page={{ expenses.previous_page_number }}" class="page-link">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ expenses.number }} of {{ expenses.paginator.num_pages }}.
+            </span>
+
+            {% if expenses.has_next %}
+                <a href="?page={{ expenses.next_page_number }}" class="page-link">Next</a>
+                <a href="?page={{ expenses.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    </nav> -->
+
+</div>
+{% endblock %}
+
+
+

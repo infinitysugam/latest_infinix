@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo_list.apps.TodoListConfig',
+    'expense_manager.apps.ExpenseManagerConfig',
     'users.apps.UsersConfig'
 ]
 
@@ -57,7 +58,11 @@ ROOT_URLCONF = 'infinix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates'),os.path.join(BASE_DIR,'todo_list','templates'),os.path.join(BASE_DIR,'dashboard','templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')
+                 ,os.path.join(BASE_DIR,'todo_list','templates')
+                 ,os.path.join(BASE_DIR,'dashboard','templates')
+                 ,os.path.join(BASE_DIR,'todo_list','templates'),
+                 os.path.join(BASE_DIR,'expense_manager','templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

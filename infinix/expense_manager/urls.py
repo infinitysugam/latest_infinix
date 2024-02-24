@@ -15,20 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from todo_list import views
-from django.contrib.auth import views as auth_views
-from users import views as user_views
-
+from expense_manager import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('todo/',include('todo_list.urls')),
-    path('dashboard/',include('dashboard.urls')),
-    path('expense_manager/',include('expense_manager.urls')),
-    path('',views.home,name='home'),
-    path('register/',user_views.register,name='register'),
-    path('profile/',user_views.profile,name='profile'),
-    path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
-    path('logout/',auth_views.LogoutView.as_view(template_name='logout.html'),name='logout')
-
+    path('',views.expense_list,name='expense_list'),
+    path('add_expense_category/',views.add_expense_category,name = 'add_expense_category'),
+    path('expense_journal/',views.expense_journal_list,name = "expense_list_journal")
 ]
