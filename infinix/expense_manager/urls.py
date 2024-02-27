@@ -20,5 +20,8 @@ from expense_manager import views
 urlpatterns = [
     path('',views.expense_list,name='expense_list'),
     path('add_expense_category/',views.add_expense_category,name = 'add_expense_category'),
+    path('add_expense_sub_category/',views.add_expense_sub_category,name = 'add_expense_sub_category'),
+    path('add_expense/',views.add_expense,name = 'add_expense'),
+    path('expense_journal/get_subcategories/',views.get_subcategories,name = 'get_subcategories'),
     path('expense_journal/',views.expense_journal_list,name = "expense_list_journal")
 ]

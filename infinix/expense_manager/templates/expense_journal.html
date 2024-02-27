@@ -1,11 +1,21 @@
 {% extends "all_base.html" %}  
 {% block content %}
 
+
+<button id="createCategoryButton" class="btn btn-primary" hx-get="{%url 'add_expense_category'%}" hx-target="#dialog">Add Category</button>
+
+
+
+
+<button id="createSubCategoryButton" class="btn btn-primary" hx-get="{%url 'add_expense_sub_category'%}" hx-target="#dialog" >Add Sub-Category</button>
+<button id="createExpenseButton" class="btn btn-primary" hx-get="{%url 'add_expense'%}" hx-target="#dialog">Add Expense</button>
+
 <table class="table table-dark table-striped table-striped-columns">
     <thead>
         <tr>
         <th scope="col">Date</th>
           <th scope="col">category</th>
+          <th scope="col">Sub Category</th>
           <th scope="col">Amount</th>
           <th scope="col">Description</th>
         </tr> 
@@ -16,6 +26,7 @@
         <tr>
           <td>{{ expense.date }}</td>
           <td>{{ expense.category.name }}</td>
+          <td>{{ expense.sub_category.sub_category_name }}</td>
           <td>${{ expense.amount }}</td>
         <td>{{ expense.description }}</td>
         </tr>
@@ -52,15 +63,6 @@
           {% endif %}
       {% endfor %}
 
-<!--       
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-
- -->
-
           {% if expenses.has_next %}
           <li class="page-item">
             <a class="page-link" href="?page={{ expenses.next_page_number }}">Next</a>
@@ -79,27 +81,69 @@
         </ul>
       </nav>
 
-    <!-- <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">  
-            {% if expenses.has_previous %}
-                <a href="?page=1" class="page-link" aria-label="Previous"> <span aria-hidden="true">&laquo; First </span></a>
-                <a href="?page={{ expenses.previous_page_number }}" class="page-link">Previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ expenses.number }} of {{ expenses.paginator.num_pages }}.
-            </span>
-
-            {% if expenses.has_next %}
-                <a href="?page={{ expenses.next_page_number }}" class="page-link">Next</a>
-                <a href="?page={{ expenses.paginator.num_pages }}" class="page-link">Last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-    </nav> -->
 
 </div>
+
+<div id="modal" class="modal fade">
+  <div id="dialog" class="modal-dialog" hx-target="this"></div>
+</div>
+
+
+
+
+
+<script>
+
+
+const modal = new bootstrap.Modal(document.getElementById("modal"))
+
+htmx.on("htmx:afterSwap", (e) => {
+  // Response targeting #dialog => show the modal
+  if (e.detail.target.id == "dialog") {
+    modal.show()
+  }
+})
+
+htmx.on("htmx:beforeSwap", (e) => {
+  // Empty response targeting #dialog => hide the modal
+  if (e.detail.target.id == "dialog" && !e.detail.xhr.response) {
+    modal.hide()
+    e.detail.shouldSwap = false
+  }
+})
+
+htmx.on("hidden.bs.modal", () => {
+  document.getElementById("dialog").innerHTML = ""
+})
+
+
+         function toggleForm() {
+        var form = document.getElementById("myForm");
+        if (form.style.display === "none") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+    }
+
+
+    function update_subcategories(category_id) {
+    var subcategorySelect = document.getElementById('id_sub_category');
+    fetch(`get_subcategories/?category_id=${category_id}`)
+        .then(response => response.json())
+        .then(data => {
+            subcategorySelect.innerHTML = ''; // Clear existing options
+            data.forEach(subcategory => {
+                var option = document.createElement('option');
+                option.value = subcategory.id;
+                option.textContent = subcategory.sub_category_name;
+                subcategorySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+
+}
+</script>
 {% endblock %}
 
 
